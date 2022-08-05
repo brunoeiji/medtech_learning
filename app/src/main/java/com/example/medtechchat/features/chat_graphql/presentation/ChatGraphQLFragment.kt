@@ -7,13 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.medtechchat.components.chatview.ChatView
-import com.example.medtechchat.components.chatview.ChatViewDelegate
+import com.example.medtechchat.components.chatview.IChatView
 import com.example.medtechchat.components.chatview.MessageEntity
 import com.example.medtechchat.databinding.FragmentChatGraphqlBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ChatGraphQLFragment : Fragment(), ChatViewDelegate {
+class ChatGraphQLFragment : Fragment(), IChatView {
 
     private val viewModel: ChatGraphQLViewModel by viewModels()
     private var _binding: FragmentChatGraphqlBinding? = null

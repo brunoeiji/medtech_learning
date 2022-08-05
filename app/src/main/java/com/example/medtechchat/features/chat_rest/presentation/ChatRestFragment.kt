@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.medtechchat.components.chatview.ChatView
-import com.example.medtechchat.components.chatview.ChatViewDelegate
+import com.example.medtechchat.components.chatview.IChatView
 import com.example.medtechchat.components.chatview.MessageEntity
 import com.example.medtechchat.databinding.FragmentChatRestBinding
 import com.example.medtechchat.features.chat_rest.data.models.response.Message
@@ -15,7 +15,7 @@ import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ChatRestFragment : Fragment(), ChatViewDelegate {
+class ChatRestFragment : Fragment(), IChatView {
 
     private val viewModel: ChatRestViewModel by viewModels()
     private var _binding: FragmentChatRestBinding? = null

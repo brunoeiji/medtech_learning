@@ -1,4 +1,4 @@
-package com.example.medtechchat.core
+package com.example.medtechchat
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

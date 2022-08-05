@@ -2,17 +2,16 @@ package com.example.medtechchat.components.chatview
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.text.Editable
 import android.util.Base64
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import com.example.medtechchat.databinding.ChatViewBinding
-import io.socket.client.Socket
 import java.io.ByteArrayOutputStream
+import java.util.*
 
 
-class ChatView(private val binding: ChatViewBinding, val fragment: Fragment, val delegate: ChatViewDelegate) {
+class ChatView(private val binding: ChatViewBinding, val fragment: Fragment, val delegate: IChatView) {
 
     var authorId: String = ""
         set(value) {
@@ -36,7 +35,6 @@ class ChatView(private val binding: ChatViewBinding, val fragment: Fragment, val
                     val selectedImage = BitmapFactory.decodeStream(imageStream);
                     val msg = encodeImage(selectedImage) ?: ""
                     val newMessageEntity = createNewMessage(msg, true)
-//                    adapter.newMessage(newMessageEntity)
                     delegate.onNewMessage(newMessageEntity)
                 }
             }
@@ -52,7 +50,6 @@ class ChatView(private val binding: ChatViewBinding, val fragment: Fragment, val
             sendButton.setOnClickListener {
                 val msg = messageInput.editText?.text.toString()
                 val newMessageEntity = createNewMessage(msg, false)
-//                adapter.newMessage(newMessageEntity)
                 messageInput.editText?.setText("")
                 delegate.onNewMessage(newMessageEntity)
             }
@@ -70,7 +67,7 @@ class ChatView(private val binding: ChatViewBinding, val fragment: Fragment, val
             authorId = authorId,
             authorName = authorId,
             authorImage = "",
-            createdAt = "aaaa",
+            createdAt = "",
             isImage = isImage
         )
 
@@ -82,7 +79,7 @@ class ChatView(private val binding: ChatViewBinding, val fragment: Fragment, val
     }
 }
 
-interface ChatViewDelegate{
+interface IChatView{
     fun onNewMessage(message: MessageEntity)
 }
 
